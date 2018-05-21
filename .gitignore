@@ -1,2 +1,7 @@
-.idea/*
+.idea/
+data/
+image/
 xu/
+*.csv
+*.pyc
+.gitignore
