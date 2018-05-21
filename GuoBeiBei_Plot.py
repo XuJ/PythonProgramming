@@ -100,6 +100,7 @@ class Fig2(object):
                 if row[col] == 'Yes':
                     ax1.axvline(row['Time'], ls='--', c='k')
                     ax1.annotate(row['Time'][:-2], xy=(row['Time'], row['c'] - 1))
+                    # ax1.text(row['Time'], row['c'] - 1, row['Time'][:-2], ha='center')
             for text in ax1.texts:
                 text.set_bbox(dict(facecolor='white', edgecolor='None', alpha=0.5))
 
