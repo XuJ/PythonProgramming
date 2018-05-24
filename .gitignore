@@ -5,3 +5,4 @@ xu/
 *.csv
 *.pyc
 .gitignore
+.ipynb_checkpoints/
