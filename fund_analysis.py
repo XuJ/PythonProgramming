@@ -8,7 +8,7 @@ def get_max_down(data, interval):
         cummax = x[-interval - 1:].cummax()
         return np.max(((cummax - x) / cummax)[-interval:])
 
-    return get_time_dependent_indicator(data, '净值日期', '单位净值', interval, method)
+    return get_time_dependent_indicator(data, '净值日期', '累计净值', interval, method)
 
 
 def get_time_dependent_indicator(data, date, value, interval, method):
@@ -27,10 +27,19 @@ year = 246
 data = pd.read_csv('data/fund/110011/data.csv', encoding='gbk')
 data.sort_values(by='净值日期', inplace=True)
 
-for i, interval in enumerate([year//12, year // 4, year // 2, year, year * 2, year * 3]):
-    fig = plt.figure(figsize=(16, 9))
-    ax = fig.add_subplot(111)
+# for i, interval in enumerate([year//12, year // 4, year // 2, year, year * 2, year * 3]):
+#     fig = plt.figure(figsize=(16, 9))
+#     ax = fig.add_subplot(111)
+#     a = get_max_down(data, interval)
+#     ax.plot_date(a['净值日期'], a['最大回撤'], ls='-', marker=None)
+#     plt.title('{} days max down'.format(interval))
+#     fig.savefig('image/fund/110011_{}_days_maxdown.jpg'.format(interval))
+
+fig = plt.figure(figsize=(16, 9))
+ax = fig.add_subplot(111)
+for i, interval in enumerate([year // 12, year // 4, year // 2, year, year * 2, year * 3]):
     a = get_max_down(data, interval)
-    ax.plot_date(a['净值日期'], a['最大回撤'], ls='-', marker=None)
-    plt.title('{} days max down'.format(interval))
-    fig.savefig('image/fund/110011_{}_days_maxdown.jpg'.format(interval))
+    ax.plot_date(a['净值日期'], a['最大回撤'], ls='-', marker=None, label='{} days'.format(interval))
+    plt.title('110011 max down'.format(interval))
+    plt.legend()
+    fig.savefig('image/fund/110011_maxdown.jpg'.format(interval))
