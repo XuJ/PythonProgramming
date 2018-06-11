@@ -6,3 +6,4 @@ xu/
 *.pyc
 .gitignore
 .ipynb_checkpoints/
+*.log
