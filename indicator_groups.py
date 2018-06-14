@@ -5,8 +5,8 @@ import pandas as pd
 
 class IndicatorGroup(object):
     def __init__(self):
-        self.data = pd.read_csv('data/TF_allIndex.csv', index_col=0, encoding='utf8')
-        self.groups = pd.read_table('data/indicator_groups.txt', encoding='gbk', index_col=0)
+        self.data = pd.read_csv('data/chenwen/TF_allIndex.csv', index_col=0, encoding='utf8')
+        self.groups = pd.read_table('data/chenwen/indicator_groups_20180614.txt', encoding='gbk', index_col=0)
         self.columns = list(set(self.data.columns) - set(['bbd_qyxx_id', 'company_name']))
         self.group_dict = {
             '综合实力风险': ['company_companytype', 'company_county', 'company_county', 'company_industry', 'ipo_company',
@@ -76,7 +76,7 @@ class IndicatorGroup(object):
         return self.new_group_dict
 
     def check_duplicates(self):
-        group_list =  ['综合实力风险', '企业经营风险', '企业诚信风险', '企业发展风险', '关联方风险', '没有找到的指标']
+        group_list = ['综合实力风险', '企业经营风险', '企业诚信风险', '企业发展风险', '关联方风险', '没有找到的指标']
         for dict_key in group_list:
             other_group_list = list(set(group_list) - set([dict_key]))
             for indicator in self.new_group_dict[dict_key]:
@@ -91,8 +91,9 @@ class IndicatorGroup(object):
                 if indicator in self.new_group_dict[dict_key]:
                     n = 1
                     break
-            if n==0:
+            if n == 0:
                 print(indicator)
+
 
 if __name__ == '__main__':
     a = IndicatorGroup()
@@ -100,15 +101,19 @@ if __name__ == '__main__':
     # a.check_duplicates()
     a.check_remain_indicators()
     c = {
-        '没有找到的指标': ['is_so_company', 'regcap_currency', 'xzxk_count', 't_112', 't_113', 't_114', 't_115', 't_116',
-                    't_117', 't_118', 't_119', 't_120', 't_121', 't_122', 't_123', 't_124', 't_125', 't_126', 't_127',
-                    't_128', 't_129', 't_130', 't_131', 't_132', 't_133', 't_134', 't_135', 't_136', 't_137', 't_138',
-                    't_139', 't_140', 't_141', 't_142', 'salary_avg', 'cx_ss_ktggsl', 'feature_14_circxzcf',
-                    'feature_25_y_0', 'feature_25_y_1', 'feature_25_y_2', 'feature_25_y_3', 'gqcz_count_history',
-                    'gqcz_count_current', 'dcdy_count_history', 'dcdy_count_current', 'mortgage_count_history',
-                    'mortgage_count_current', 'mortgage_area_history', 'mortgage_area_current',
-                    'mortgage_price_history', 'mortgage_price_current', 'feature_10_1_fygg_1', 'feature_10_2_fygg_1',
-                    'feature_10_2_zgcpws_1', 'feature_10_3_fygg_3', 'feature_10_3_zgcpws_3'],
+        '没有找到的指标1': ['is_so_company', 'regcap_currency', 'xzxk_count', 't_112', 't_113', 't_114', 't_115', 't_116',
+                     't_117', 't_118', 't_119', 't_120', 't_121', 't_122', 't_123', 't_124', 't_125', 't_126', 't_127',
+                     't_128', 't_129', 't_130', 't_131', 't_132', 't_133', 't_134', 't_135', 't_136', 't_137', 't_138',
+                     't_139', 't_140', 't_141', 't_142', 'salary_avg', 'cx_ss_ktggsl', 'feature_14_circxzcf',
+                     'feature_25_y_0', 'feature_25_y_1', 'feature_25_y_2', 'feature_25_y_3', 'gqcz_count_history',
+                     'gqcz_count_current', 'dcdy_count_history', 'dcdy_count_current', 'mortgage_count_history',
+                     'mortgage_count_current', 'mortgage_area_history', 'mortgage_area_current',
+                     'mortgage_price_history', 'mortgage_price_current', 'feature_10_1_fygg_1', 'feature_10_2_fygg_1',
+                     'feature_10_2_zgcpws_1', 'feature_10_3_fygg_3', 'feature_10_3_zgcpws_3'],
+        '没有找到的指标2': ['t120count', 't114count', 't131count', 't124count', 't138count', 't119count', 't118count',
+                     't136count', 't127count', 't134count', 't130count', 't140count', 't129count', 't128count',
+                     't122count', 't125count', 't121count', 't123count', 't117count', 't126count', 't116count',
+                     't132count', 't135count', 't115count', 't139count', 't113count', 't133count', 't137count'],
         '综合实力风险': ['company_companytype', 'company_county', 'company_county', 'company_industry', 'ipo_company',
                    't30count', 't30count_max', 't30count_timeavg', 't30count_1yyir', 't30count_avg', 't30count_3mmir',
                    't30count_min', 't30count_6mmir', 't31count_3mmir', 't31count_avg', 't31count_max',
@@ -348,5 +353,4 @@ if __name__ == '__main__':
                   'feature_23_d_3_timeavg', 'feature_23_d_2', 'feature_23_d_1_timeavg', 'feature_23_d_2_timeavg',
                   'feature_23_d_1', 'feature_23_d_3', 'feature_23_d_3_timeavg', 'feature_23_d_2',
                   'feature_23_d_1_timeavg', 'feature_23_d_2_timeavg', 'feature_23_d_1']
-    }
-    
+        }
