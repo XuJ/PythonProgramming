@@ -191,8 +191,8 @@ def method_merge(scale1, scale2):
 
 def get_company_scale(onecomp):
     company_industry = onecomp['company_industry'],
-    unregcap_amount = onecomp['company_industry'],
-    t14count = onecomp['company_industry'],
+    unregcap_amount = onecomp['unregcap_amount'],
+    t14count = onecomp['t14count'],
     company_type = onecomp['company_companytype']
     if company_type == '9300':
         return 'gt'
@@ -216,8 +216,8 @@ def grid():
     ##调取指标
     onecomp = {
         "company_industry": dsc.getIndex("basic.company_industry"),  # 行业类型
-        "unregcap_amount": dsc.getIndex("risk.unregcap_amount"),  # 注册资本
-        "t14count": dsc.getIndex("risk.gs_eg_enterprise_type"),  # 一度关联方数量
+        "unregcap_amount": dsc.getIndex("risk.unregcap_amount") / 10000,  # 注册资本
+        "t14count": dsc.getIndex("risk.t14count"),  # 一度关联方数量
         "company_companytype": dsc.getIndex("basic.company_companytype"),  # 企业类型
     }
     industry = get_company_industry(onecomp)  # 获得企业行业分类
