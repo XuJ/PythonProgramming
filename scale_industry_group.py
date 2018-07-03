@@ -215,21 +215,18 @@ def get_company_industry(onecomp):
 def grid():
     ##调取指标
     onecomp = {
-        "company_industry": dsc.getIndex("basic.gs_eg_enterprise_type"),  # 行业类型
-        "unregcap_amount": dsc.getIndex("basic.gs_eg_enterprise_type"),  # 注册资本
-        "t14count": dsc.getIndex("basic.gs_eg_enterprise_type"),  # 一度关联方数量
-        "company_companytype": dsc.getIndex("basic.gs_eg_enterprise_type"),  # 企业类型
-        }
-
+        "company_industry": dsc.getIndex("basic.company_industry"),  # 行业类型
+        "unregcap_amount": dsc.getIndex("risk.unregcap_amount"),  # 注册资本
+        "t14count": dsc.getIndex("risk.gs_eg_enterprise_type"),  # 一度关联方数量
+        "company_companytype": dsc.getIndex("basic.company_companytype"),  # 企业类型
+    }
     industry = get_company_industry(onecomp)  # 获得企业行业分类
     scale = get_company_scale(onecomp)  # 获得企业规模分类
     scale_industry_dict = {
         'scale': scale,
         'industry': industry
-        }
+    }
     return scale_industry_dict
-
-
 #############自定义end####################
 
 
