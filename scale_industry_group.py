@@ -13,29 +13,25 @@ import pandas as pd
 
 ##定义固定变量
 company_industry_dict = {
-    # 农、林、牧、渔业
-    'A': '01',
-    # 采矿业；建筑业；科学研究和技术服务业；租赁和商务服务业；水利、环境和公共设施管理业；制造业；交通运输、仓储和邮政业；信息传输、软件和信息技术服务业
-    'B': '02',
-    'C': '02',
-    'E': '02',
-    'G': '02',
-    'I': '02',
-    'L': '02',
-    'M': '02',
-    'N': '02',
-    # 批发和零售业；住宿和餐饮业；文化、体育和娱乐业；卫生和社会工作；居民服务、修理和其他服务业；教育；其他
-    'F': '03',
-    'H': '03',
-    'O': '03',
-    'P': '03',
-    'Q': '03',
-    'R': '03',
-    'Z': '03',
-    # 金融业；房地产业；电力、热力、燃气及水生产和供应业
-    'D': '04',
-    'J': '04',
-    'K': '04'
+    'A': '01',  # 农、林、牧、渔业
+    'B': '02',  # 采矿业
+    'C': '02',  # 制造业
+    'D': '04',  # 电力、热力、燃气及水生产和供应业
+    'E': '02',  # 建筑业
+    'F': '03',  # 批发和零售业
+    'G': '02',  # 交通运输、仓储和邮政业
+    'H': '03',  # 住宿和餐饮业
+    'I': '02',  # 信息传输、软件和信息技术服务业
+    'J': '04',  # 金融业
+    'K': '04',  # 房地产业
+    'L': '02',  # 租赁和商务服务业
+    'M': '02',  # 科学研究和技术服务业
+    'N': '02',  # 水利、环境和公共设施管理业
+    'O': '03',  # 居民服务、修理和其他服务业
+    'P': '03',  # 教育
+    'Q': '03',  # 卫生和社会工作
+    'R': '03',  # 文化、体育和娱乐业
+    'Z': '03'  # 其他
     }
 company_scale_df = pd.DataFrame({
     'company_industry': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'Z'],
@@ -217,29 +213,20 @@ def get_company_industry(onecomp):
 
 
 def grid():
-    ##调取指标 数据库并没有修改
+    ##调取指标
     onecomp = {
-        # 行业类型
-        "company_industry": dsc.getIndex("basic.gs_eg_enterprise_type"),
-        # 注册资本
-        "unregcap_amount": dsc.getIndex("basic.gs_eg_enterprise_type"),
-        # 一度关联方数量
-        "t14count": dsc.getIndex("basic.gs_eg_enterprise_type"),
-        # 企业类型
-        "company_companytype": dsc.getIndex("basic.gs_eg_enterprise_type"),
+        "company_industry": dsc.getIndex("basic.gs_eg_enterprise_type"),  # 行业类型
+        "unregcap_amount": dsc.getIndex("basic.gs_eg_enterprise_type"),  # 注册资本
+        "t14count": dsc.getIndex("basic.gs_eg_enterprise_type"),  # 一度关联方数量
+        "company_companytype": dsc.getIndex("basic.gs_eg_enterprise_type"),  # 企业类型
         }
 
-    ##获得企业行业分类
-    industry = get_company_industry(onecomp)
-
-    ##获得企业规模分类
-    scale = get_company_scale(onecomp)
-
+    industry = get_company_industry(onecomp)  # 获得企业行业分类
+    scale = get_company_scale(onecomp)  # 获得企业规模分类
     scale_industry_dict = {
         'scale': scale,
         'industry': industry
         }
-
     return scale_industry_dict
 
 
@@ -250,4 +237,6 @@ def grid():
 dsc.build("SampleModule", "示例模块").addIndex("regcap_amount ", regcap_amount(), "注册金额").addIndex("company_name",
                                                                                                company_name(),
                                                                                                "公司名").addIndex(
-    "variance ", variance(), "指标3说明").create()  #############导出指标 end##################
+    "variance ", variance(), "指标3说明").create()
+
+#############导出指标 end##################
