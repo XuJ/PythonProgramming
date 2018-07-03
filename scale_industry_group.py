@@ -231,9 +231,5 @@ def grid():
 
 
 #############导出指标 begin##################
-dsc.build("SampleModule", "示例模块").addIndex("regcap_amount ", regcap_amount(), "注册金额").addIndex("company_name",
-                                                                                               company_name(),
-                                                                                               "公司名").addIndex(
-    "variance ", variance(), "指标3说明").create()
-
+dsc.build("SampleModule","示例模块").addIndex("regcap_amount",grid(),"注册金额").create()
 #############导出指标 end##################
