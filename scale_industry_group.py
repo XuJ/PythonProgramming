@@ -33,6 +33,7 @@ company_industry_dict = {
     'R': '03',  # 文化、体育和娱乐业
     'Z': '03'  # 其他
     }
+default_company_industry = company_industry_dict['Z']
 company_scale_df = pd.DataFrame({
     'company_industry': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'Z'],
     'unreg_amount_low': [360, 800, 500, 2000, 1000, 200, 500, 200, 500, 1000, 2000, 1000, 1000, 1000, 200, 200, 200,
@@ -160,7 +161,7 @@ company_scale_dict = company_scale_df.to_dict('items')
 #         'unreg_amount_low': 200
 #     }
 # }
-
+default_company_scale = company_scale_dict['Z']
 scale_dict = {
     1: 'xw',
     2: 'zx',
@@ -197,7 +198,7 @@ def get_company_scale(onecomp):
     if company_type == '9300':
         return 'gt'
     else:
-        company_scale_dict_sub = company_scale_dict[company_industry]
+        company_scale_dict_sub = company_scale_dict.get(company_industry, default_company_scale)
         unregcap_amount_low = company_scale_dict_sub['unregcap_amount_low']
         unreg_amount_high = company_scale_dict_sub['unreg_amount_high']
         t14count_low = company_scale_dict_sub['t14count_low']
@@ -209,7 +210,7 @@ def get_company_scale(onecomp):
 
 def get_company_industry(onecomp):
     company_industry = onecomp['company_industry']
-    return company_industry_dict[company_industry]
+    return company_industry_dict.get(company_industry, default_company_industry)
 
 
 def grid():
